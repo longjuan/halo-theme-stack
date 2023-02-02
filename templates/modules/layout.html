@@ -55,16 +55,14 @@
     })()
 </script>
 <script>
-    document.addEventListener("DOMContentLoaded", function(){
-        var section = document.querySelector("#article-content");
-        var headings = section.querySelectorAll("h1, h2, h3, h4, h5, h6");
-        for(var i = 0; i < headings.length; i++){
-            var heading = headings[i];
-            if(!heading.id){
-                heading.id = "title-" + heading.textContent.replace(/\s+/g, '-');
-            }
+    const section = document.querySelector("#article-content");
+    const headings = section.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    for(let i = 0; i < headings.length; i++){
+        const heading = headings[i];
+        if(!heading.id){
+            heading.id = "title" + i + "-" + heading.textContent.replace(/\s+/g, '-');
         }
-    });
+    }
 
 </script>
 <script type="text/javascript" th:src="@{/assets/js/tocbot.min.js}"></script>
