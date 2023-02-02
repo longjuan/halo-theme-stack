@@ -6,35 +6,33 @@
   <main class="main full-width">
     <header>
       <h3 class=section-title>
-        TAG
+        Section
       </h3>
       <div class=section-card>
         <div class=section-details>
           <h3 class=section-count>
-            [[${tag.status.postCount}]] page
+            [[${tags.size()}]] page
           </h3>
           <h1 class=section-term>
-            [[${tag.spec.displayName}]]
+            Tags
           </h1>
         </div>
       </div>
     </header>
     <section class=article-list--compact>
-      <article th:each="post : ${posts.items}">
-        <a th:href="${post.status.permalink}">
+      <article th:each="tag : ${tags}">
+        <a th:href="${tag.status.permalink}">
           <div class=article-details>
             <h2 class=article-title>
-              [[${post.spec.title}]]
+              [[${tag.spec.displayName}]]
             </h2>
             <footer class=article-time>
-              <time th:text="${#dates.format(post.spec.publishTime,'yyyy-MM-dd')}">
-
-              </time>
+              [[${tag.status.visiblePostCount}]] page
             </footer>
           </div>
           <div class=article-image>
-            <img th:src="${post.spec.cover}"
-                 width=120 height=120 th:alt="${post.spec.title}" loading=lazy>
+            <img th:src="${tag.spec.cover}"
+                 width=120 height=120 th:alt="${tag.spec.displayName}" loading=lazy>
           </div>
         </a>
       </article>

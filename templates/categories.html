@@ -1,17 +1,42 @@
 <!DOCTYPE html>
-<html
-  xmlns:th="https://www.thymeleaf.org"
-  th:replace="~{layout :: html(head = null,content = ~{::content})}"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{modules/layout :: html(title = '分类' + ' - ' + ${site.title},htmlType = category,header = null,leftSidebar = true,rightSidebar = true, content = ~{::content}, head = null, footer = null)}"
 >
-  <th:block th:fragment="content">
-    <h1>分类目录</h1>
-    <ul>
-      <li th:each="category : ${categories}">
-        <a
-          th:href="@{${category.status.permalink}}"
-          th:text="${category.spec.displayName}"
-        ></a>
-      </li>
-    </ul>
-  </th:block>
-</html>
+<th:block th:fragment="content">
+  <main class="main full-width">
+    <header>
+      <h3 class=section-title>
+        Section
+      </h3>
+      <div class=section-card>
+        <div class=section-details>
+          <h3 class=section-count>
+            [[${categories.size()}]] page
+          </h3>
+          <h1 class=section-term>
+            Categories
+          </h1>
+        </div>
+      </div>
+    </header>
+    <section class=article-list--compact>
+      <article th:each="categorie : ${categories}">
+        <a th:href="${categorie.status.permalink}">
+          <div class=article-details>
+            <h2 class=article-title>
+              [[${categorie.spec.displayName}]]
+            </h2>
+            <footer class=article-time>
+              [[${categorie.status.visiblePostCount}]] page
+            </footer>
+          </div>
+          <div class=article-image>
+            <img th:src="${categorie.spec.cover}"
+                 width=120 height=120 th:alt="${categorie.spec.displayName}" loading=lazy>
+          </div>
+        </a>
+      </article>
+    </section>
+    <th:block th:replace="~{modules/footer}" />
+  </main>
+</th:block>
