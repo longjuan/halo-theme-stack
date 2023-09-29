@@ -6,6 +6,8 @@
     <meta name=viewport content="width=device-width,initial-scale=1">
     <title th:text="${title}"></title>
     <link rel=stylesheet th:href="@{/assets/css/style.css}">
+    <link rel=stylesheet th:href="@{/assets/css/main.css}">
+<!--    <script type="text/javascript" th:src="@{/assets/js/stack.js}"></script>-->
     <link rel="shortcut icon" th:href="@{${#strings.isEmpty(site.favicon) ? '/assets/img/jiewen_icon.png' : site.favicon}}"/>
 </head>
 <body class=article-page>
@@ -54,21 +56,22 @@
             document.head.appendChild(e)
     })()
 </script>
-<script>
-    const section = document.querySelector("#article-content");
-    if (section) {
-        const headings = section.querySelectorAll("h1, h2, h3, h4, h5, h6");
-        for(let i = 0; i < headings.length; i++){
-            const heading = headings[i];
-            if(!heading.id){
-                heading.id = "title" + i + "-" + heading.textContent.replace(/\s+/g, '-');
+<th:block th:if="${htmlType == 'post' or htmlType == 'links'}">
+    <script>
+        const section = document.querySelector("#article-content");
+        if (section) {
+            const headings = section.querySelectorAll("h1, h2, h3, h4, h5, h6");
+            for(let i = 0; i < headings.length; i++){
+                const heading = headings[i];
+                if(!heading.id){
+                    heading.id = "title" + i + "-" + heading.textContent.replace(/\s+/g, '-');
+                }
             }
         }
-    }
-
-</script>
+    </script>
 <script type="text/javascript" th:src="@{/assets/js/tocbot.min.js}"></script>
 <script type="text/javascript" th:src="@{/assets/js/plugins.js}"></script>
+</th:block>
 <script type="text/javascript">
 
     // 获取导航栏中所有的链接元素
@@ -129,12 +132,12 @@
     function scrollFn() {
         var clietH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
         var scrollTop = document.documentElement.scrollTop || window.pageYOffset ||  document.body.scrollTop;
-        console.log(clietH, scrollTop);
+        // console.log(clietH, scrollTop);
         Array.from(imgs).forEach((item) =>{
             let eleTop = item.offsetTop
             // console.log(eleTop)
             let count = scrollTop + clietH - eleTop
-            console.log(count)
+            // console.log(count)
             // 可设置为>100 查看懒加载效果
             if (count > 0) {
                 //从data-url中取出真实的图片地址赋值给scr
@@ -144,5 +147,88 @@
     }
 </script>
 </th:block>
+<script>
+    // 创建XMLHttpRequest对象
+    var xhr = new XMLHttpRequest();
+
+    // 设置请求方法和请求地址
+    xhr.open("GET", "https://www.aapi.icu/call/hot/weibo/?item=6", true);
+
+    // 发送请求
+    xhr.send();
+
+    // 监听状态改变事件
+    xhr.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            // 将响应数据转换为JSON格式
+            var response = JSON.parse(this.responseText);
+
+            // 获取热搜数据
+            var hotData = response.data;
+
+            // 创建ul元素
+            var ul = document.createElement("ul");
+            ul.className = "hot-ranking-list";
+
+            // 遍历热搜数据，创建li元素
+            for (var i = 0; i < hotData.length; i++) {
+                var hot = hotData[i];
+
+                // 创建li元素
+                var li = document.createElement("li");
+                li.className = "hot-ranking-list_item";
+
+                // 创建a元素
+                var a = document.createElement("a");
+                a.href = hot.hot_url;
+                a.target = "_blank";
+                a.title = hot.hot_title;
+
+                // 创建span元素
+                var spanOrder = document.createElement("span");
+                spanOrder.className = "hot-ranking_order hot-ranking_order-" + hot.hot_rank;
+                spanOrder.textContent = hot.hot_rank;
+
+                var spanText = document.createElement("span");
+                spanText.className = "hot-ranking_text";
+
+                var spanTitle = document.createElement("span");
+                spanTitle.className = "hot-ranking_title";
+                spanTitle.textContent = hot.hot_title;
+
+                var spanNumber = document.createElement("span");
+                spanNumber.className = "hot-ranking_number";
+                spanNumber.textContent = hot.hot_value;
+
+                var spanHot = document.createElement("span");
+                if (hot.hot_rank <= 3){
+                    spanHot.className = "hot-ranking_hot";
+                    spanHot.textContent = "热";
+                }
+                else {
+                    spanHot.className = "hot-ranking_new";
+                    spanHot.textContent = "新";
+                }
+
+                // 将span元素添加到a元素中
+                spanText.appendChild(spanTitle);
+                spanText.appendChild(spanNumber);
+                a.appendChild(spanOrder);
+                a.appendChild(spanText);
+                a.appendChild(spanHot);
+
+                // 将a元素添加到li元素中
+                li.appendChild(a);
+
+                // 将li元素添加到ul元素中
+                ul.appendChild(li);
+            }
+
+            // 将ul元素添加到页面中
+            document.getElementById("weibo_hot").appendChild(ul);
+        }
+    };
+
+</script>
 </body>
 </html>
