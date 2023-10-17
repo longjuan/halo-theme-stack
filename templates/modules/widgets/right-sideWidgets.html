@@ -73,7 +73,7 @@
     <th:block th:each="archive : ${archives.items}">
 
       <div class=archives-year>
-        <a th:href="@{'/archives/'+${archive.year}}">
+        <a th:href="@{'/archives#'+${archive.year}}">
                 <span class=year>
                   [[${archive.year}]]
                 </span>
