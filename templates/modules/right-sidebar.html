@@ -5,7 +5,7 @@
 <!--  首页-->
   <th:block th:if="${htmlType == 'index'}">
     <th:block th:each="widgets : ${#strings.listSplit(theme.config.rightSidebar.indexWidgets, ',')}">
-      <th:block th:replace="modules/widgets/right-sideWidgets :: ${widgets}" />
+      <th:block th:replace="~{modules/widgets/right-sideWidgets :: ${widgets}}" />
     </th:block>
   </th:block>
 <!--  文章页-->

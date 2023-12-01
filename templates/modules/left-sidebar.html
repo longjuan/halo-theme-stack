@@ -32,7 +32,7 @@
     <th:block th:if="${theme.config.leftSidebar.socialSelect == 'social-default'}">
     <ol class=social-menu >
         <th:block th:each="socialsIcon : ${theme.config.leftSidebar.socials}">
-        <th:block th:replace="modules/widgets/social-group :: ${socialsIcon.socials_select}" />
+        <th:block th:replace="~{modules/widgets/social-group :: ${socialsIcon.socials_select}}" />
         </th:block>
     </ol>
     </th:block>
