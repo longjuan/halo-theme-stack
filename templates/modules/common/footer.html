@@ -8,18 +8,23 @@
 
         <section class="powerby">
             <th:block th:if="${! #strings.isEmpty(theme.config.base.icp_police.icp)}">
-            <a href="https://icp_police.miit.gov.cn/"
-               th:href="${theme.config.base.icp_police.icp_link}" th:text="${theme.config.base.icp_police.icp}"></a>
-            <br />
+                <a href="https://icp_police.miit.gov.cn/"
+                   th:href="${theme.config.base.icp_police.icp_link}" th:text="${theme.config.base.icp_police.icp}"></a>
             </th:block>
             <th:block th:if="${! #strings.isEmpty(theme.config.base.icp_police.police)}">
-            <a href="https://icp_police.mps.gov.cn/#/query/webSearch"
-               th:href="${theme.config.base.icp_police.gongan_link}" th:text="${theme.config.base.icp_police.police}"></a>
-            <br />
+                <a href="https://icp_police.mps.gov.cn/#/query/webSearch"
+                   th:href="${theme.config.base.icp_police.gongan_link}" th:text="${theme.config.base.icp_police.police}"></a>
             </th:block>
-            Built with <a href="https://www.halo.run/" target="_blank" rel="noopener">Halo</a>
-            <br> Theme <b><a href="https://github.com/jiewenhuang/halo-theme-stack" target="_blank" rel="noopener" th:data-version="${theme.spec.version}">Stack</a></b> designed by
-            <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+            <div>Built with <a href="https://www.halo.run/" target="_blank" rel="noopener">Halo</a></div>
+            <div>Theme <b><a href="https://github.com/longjuan/halo-theme-stack/tree/main" target="_blank"
+                             rel="noopener">Stack</a></b> optimized by <a
+                    href="https://github.com/longjuan" target="_blank" rel="noopener">longjuan</a>,
+                based on the <a href="https://github.com/jiewenhuang/halo-theme-stack" target="_blank" rel="noopener">original
+                    Stack theme</a> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+            </div>
+
+            <!--    底部代码注入-->
+            <halo:footer />
         </section>
     </footer>
 </th:block>

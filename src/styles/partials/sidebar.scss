@@ -106,6 +106,12 @@
             height: 100%;
             border-radius: 100%;
             box-shadow: var(--shadow-l1);
+            transition: var(--vs-transition-ease);
+
+            &:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 32px 10px #abb6e959;
+            }
         }
 
         .emoji {

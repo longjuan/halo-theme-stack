@@ -1,5 +1,6 @@
 plugins {
   id 'java'
+  id "com.github.node-gradle.node" version "5.0.0"
 }
 
 group 'run.halo'
@@ -11,4 +12,36 @@ repositories {
 
 dependencies {
   implementation('org.thymeleaf:thymeleaf:3.0.12.RELEASE')
+}
+
+task buildFrontend(type: PnpmTask){
+  args = ['build']
+  dependsOn 'pnpmInstall'
+}
+
+task copyFiles(type: Copy){
+  delete('build/dist/file/halo-theme-stack2-longjuan')
+  from('./') {
+    include 'theme.yaml'
+    include 'settings.yaml'
+    include 'annotation-setting.yaml'
+    include 'templates/**'
+    include 'i18n/**'
+  }
+  into 'build/dist/file/halo-theme-stack2-longjuan'
+  dependsOn 'buildFrontend'
+}
+
+task zip(type: Zip) {
+  // 设置打包后的zip文件存放的位置
+  destinationDir = file("$buildDir/dist")
+  // 打包的文件
+  from("build/dist/file")
+  // 打包后的文件名
+  archiveName = "halo-theme-stack2-longjuan.zip"
+  dependsOn 'copyFiles'
+}
+
+build {
+    dependsOn 'zip'
 }

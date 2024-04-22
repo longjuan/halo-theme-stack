@@ -14,7 +14,7 @@
                          th:classappend="${! #strings.isEmpty(recommendPost.spec.cover)} ? 'has-image'">
                     <a th:href="@{${recommendPost.status.permalink}}" th:title="${recommendPost.spec.title}">
                         <div class="article-image" th:if="${! #strings.isEmpty(recommendPost.spec.cover)}">
-                            <img th:src="${recommendPost.spec.cover}">
+                            <img th:src="${recommendPost.spec.cover}" loading="lazy">
 
                         </div>
                         <div class="article-details">
@@ -31,7 +31,7 @@
                              th:if="${post.metadata.name != recommendPost.metadata.name}">
                         <a th:href="@{${recommendPost.status.permalink}}" th:title="${recommendPost.spec.title}">
                             <div class="article-image" th:if="${! #strings.isEmpty(recommendPost.spec.cover)}">
-                                <img th:src="${recommendPost.spec.cover}">
+                                <img th:src="${recommendPost.spec.cover}" loading="lazy">
 
                             </div>
                             <div class="article-details">

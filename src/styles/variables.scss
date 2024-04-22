@@ -18,8 +18,6 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
     --accent-color-text: #fff;
     --body-text-color: #707070;
 
-    --tag-border-radius: 4px;
-
     --section-separation: 40px;
 
     --scrollbar-thumb: hsl(0, 0%, 85%);
@@ -62,8 +60,6 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
 
     --card-separator-color: rgba(218, 218, 218, 0.5);
 
-    --card-border-radius: 10px;
-
     --card-padding: 20px;
 
     @include respond(md) {
@@ -100,7 +96,7 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
     --article-font-size: 1.6rem;
 
     @include respond(md) {
-        --article-font-size: 1.7rem;
+        --article-font-size: 1.5rem;
     }
 
     --article-line-height: 1.85;
@@ -167,6 +163,36 @@ $defaultTagColors: #fff, #fff, #fff, #fff, #fff;
     --menu-icon-separation: 40px;
     --container-padding: 15px;
     --widget-separation: var(--section-separation);
+}
+
+/*
+*  Transition style
+*/
+:root {
+    --vs-transition-duration: .25s;
+    --vs-transition-function-ease: ease;
+    --vs-transition-ease: all var(--vs-transition-duration) var(--vs-transition-function-ease);
+}
+
+/*
+*  Radius style
+*/
+:root {
+    --tag-border-radius: 10px;
+    --card-border-radius: 20px;
+    --archive-border-radius: 16px;
+    --search-border-radius: 16px;
+    --vs-border-radius: 12px;
+}
+
+/*
+*  Gray style
+*/
+:root {
+    --vs-gray-1: 249, 252, 253;
+    --vs-gray-2: 244, 247, 248;
+    --vs-gray-3: 240, 243, 244;
+    --vs-gray-4: 230, 233, 234;
 }
 
 //halo评论区样式

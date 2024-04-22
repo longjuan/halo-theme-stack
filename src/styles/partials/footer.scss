@@ -22,6 +22,8 @@ footer.site-footer {
         color: var(--body-text-color);
         font-weight: normal;
         font-size: 1.2rem;
+        display: flex;
+        flex-direction: column;
 
         a {
             color: var(--body-text-color);

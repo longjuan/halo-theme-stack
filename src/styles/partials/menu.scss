@@ -171,6 +171,9 @@
         vertical-align: middle;
         padding: 0;
 
+        padding-right: 5px;
+        transition: var(--vs-transition-ease);
+
         @include respond(md) {
             width: 100%;
         }
@@ -205,13 +208,22 @@
                 font-weight: bold;
             }
         }
+
+        &:hover {
+            padding-left: 5px;
+            padding-right: 0;
+        }
     }
 
     .menu-bottom-section {
-        margin-top: auto;
+        //margin-top: auto;
         display: flex;
         flex-direction: column;
         width: 100%;
+
+        li {
+            padding: 0 !important;
+        }
     }
 }
 

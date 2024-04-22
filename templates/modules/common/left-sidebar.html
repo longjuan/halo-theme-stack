@@ -31,7 +31,10 @@
             <li th:each="menuItem : ${menuItems}">
                 <a th:href="@{${menuItem.status.href}}"
                    th:target="${menuItem.spec.target?.value}">
-                    <i th:if="${! #strings.isEmpty(#annotations.get(menuItem, 'icon'))}" th:class="${#annotations.get(menuItem, 'icon')}"></i>
+                    <img th:if="${! #strings.isEmpty(#annotations.get(menuItem, 'icon'))}"
+                         th:src="${#annotations.get(menuItem, 'icon')}" height="20px" width="20px"
+                         th:alt="${menuItem.status.displayName}"
+                         loading="lazy"/>
 
                     <span th:text="${menuItem.status.displayName}"></span>
                 </a>

@@ -23,13 +23,14 @@
             background: var(--card-background);
             box-shadow: var(--shadow-l1);
             border-radius: var(--tag-border-radius);
-            padding: 8px 20px;
+            padding: 12px 20px;
             color: var(--card-text-color-main);
             font-size: 1.4rem;
-            transition: box-shadow 0.3s ease;
+            transition: var(--vs-transition-ease);
 
             &:hover {
-                box-shadow: var(--shadow-l2);
+                box-shadow: var(--shadow-l3);
+                transform: translateY(-2px);
             }
         }
     }
@@ -38,7 +39,7 @@
 /* Archives widget */
 .widget.archives {
     .widget-archive--list {
-        border-radius: var(--card-border-radius);
+        border-radius: var(--archive-border-radius);
         box-shadow: var(--shadow-l1);
         background-color: var(--card-background);
     }
@@ -52,6 +53,7 @@
             font-size: 1.4rem;
             padding: 18px 25px;
             display: flex;
+            border-radius: var(--archive-border-radius);
 
             span.year {
                 flex: 1;
@@ -61,6 +63,10 @@
 
             span.count {
                 color: var(--card-text-color-tertiary);
+            }
+
+            &:hover {
+                background: rgba(var(--vs-gray-1), 1);
             }
         }
     }

@@ -4,14 +4,15 @@
     <section class="article-list">
 
 
-        <article class="has-image" th:each="post : ${posts.items}">
-            <header class="article-header">
+        <article th:each="post : ${posts.items}" th:class="${#strings.isEmpty(post.spec.cover)? '':'has-image'}">
+            <header class="article-header" th:onclick="@{'window.location.href=\'' + ${post.status.permalink} + '\''}">
                 <div class="article-image">
                     <a th:href="${post.status.permalink}">
                         <img th:if="${! #strings.isEmpty(post.spec.cover)}" th:src="${post.spec.cover}" th:alt="${post.spec.title}" loading="lazy">
 
                     </a>
                 </div>
+                <div class="article-image-after-placeholder"></div>
                 <div class="article-details">
                     <header class="article-category">
                         <th:block th:if="${! #strings.isEmpty(post.spec.categories)}"

@@ -49,12 +49,12 @@
             </article>
             <div class="gallery-photos page" th:data-page="${photos.page}"  th:data-total-page="${photos.totalPages}">
                 <div class="gallery-photo visible" th:each="photo : ${photos.items}" >
-                    <img class="photo-img"  decoding="async" th:data-src="${photo.spec.url}" th:src="@{/assets/images/photo_loading.gif}" th:alt="${photo.spec.displayName}">
+                    <img class="photo-img"  decoding="async" th:data-src="${photo.spec.url}" th:src="@{/assets/images/photo_loading.gif}" th:alt="${photo.spec.displayName}" loading="lazy">
                 </div>
 
             </div>
             <div class="loading">
-                <img th:src="@{/assets/images/loading-ball.svg}" alt="loading">
+                <img th:src="@{/assets/images/loading-ball.svg}" alt="loading" loading="lazy">
 
             </div>
 

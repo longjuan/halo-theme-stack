@@ -147,7 +147,6 @@ spec:
                 - label: Bilbili
                   value: "stack icon-bilibili-line"
                 - label: RSS
-                - label: RSS
                   value: "stack icon-rss"
                 - label: Email
                   value: "stack icon-email"
@@ -199,7 +198,7 @@ spec:
                 - value: "categoryCloud"
                   label: 分类
                 - value: "tagCloud"
-                  label: 分类
+                  label: 标签
     - group: post
       label: 文章页
       formSchema:

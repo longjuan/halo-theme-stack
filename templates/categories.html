@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="https://www.thymeleaf.org" th:replace="~{modules/layout :: html(content = ~{::content}, title=#{theme.categories}, pageType='categories' )}">
+<th:block th:fragment="content">
+    <div class="container main-container flex on-phone--column extended">
+        <!--      Left Sidebar-->
+        <th:block th:replace="~{modules/common/left-sidebar :: left-sidebar}"></th:block>
+        <!--      Right Sidebar-->
+        <th:block th:replace="~{modules/common/right-sidebar :: right-sidebar(toc='false')}"></th:block>
 
-</body>
+
+        <main class="main full-width">
+            <header>
+                <h3 class="section-title">
+                    [[#{theme.overview}]]
+                </h3>
+
+                <div class="section-card">
+                    <div class="section-details">
+                        <h3 class="section-count">[[${categories.size()}]] [[#{theme.item}]]</h3>
+                        <h1 class="section-term" th:text="#{theme.categories}"></h1>
+
+                    </div>
+                </div>
+            </header>
+
+            <section class="article-list--compact">
+
+                <article th:each="categorie : ${categories}">
+                    <a th:href="${categorie.status.permalink}">
+                        <div class="article-details">
+                            <h2 class="article-title"
+                                th:text="${categorie.spec.displayName}"></h2>
+                            <footer class="article-time">
+                                [[${categorie.status.visiblePostCount}]] [[#{theme.page}]]
+                            </footer>
+                        </div>
+                        <div class="article-image" th:if="${! #strings.isEmpty(categorie.spec.cover)}">
+                            <img th:src="${categorie.spec.cover}" width="120" height="120" loading="lazy">
+
+                        </div>
+
+                    </a>
+                </article>
+
+            </section>
+            <!--Footer-->
+            <th:block th:replace="~{modules/common/footer :: footer}"></th:block>
+        </main>
+
+    </div>
+    <!--    Tail JS-->
+    <th:block th:replace="~{modules/tail :: tail}"></th:block>
+</th:block>
 </html>

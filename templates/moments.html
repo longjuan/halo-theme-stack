@@ -24,8 +24,9 @@
                 <div class="moment-content">
                     <ul>
                         <li th:each="moment : ${moments.items}" th:with="content=${moment.spec.content}">
-                            <img th:src="${theme.config.leftSidebar.blog_info.avatar}" alt="" class="avatar">
-                            <div class="content" >
+                            <img th:src="${theme.config.leftSidebar.blog_info.avatar}" alt="" class="avatar"
+                                 loading="lazy">
+                            <div class="content">
                                 <div class="item-content" th:if="${not #strings.isEmpty(content.html)}">
                                     <div class="item-html " th:utext="${content.html}">
 
