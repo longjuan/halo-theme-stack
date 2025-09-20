@@ -61,9 +61,19 @@ class Search {
         let keyword = keywords.join('')
         keyword = keyword.replace(/[&<>"…]/g, replaceTag);
         try {
-            const searchUrl: string = `/apis/api.halo.run/v1alpha1/indices/post?keyword=${keyword}&highlightPreTag=%3Cmark%3E&highlightPostTag=%3C/mark%3E`;
-
-            const res = await fetch(searchUrl);
+            const searchUrl: string = "/apis/api.halo.run/v1alpha1/indices/-/search";
+            const res = await fetch(searchUrl, {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            highlightPostTag: "<mark>",
+            highlightPreTag: "</mark>",
+            keyword: keyword,
+            limit: 20,
+            }),
+        });
             const data = await res.json();
             results = data.hits
             processingTimeMillis = data.processingTimeMillis

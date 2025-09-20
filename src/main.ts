@@ -13,7 +13,7 @@ import createElement from './ts/createElement';
 import StackColorScheme from './ts/colorScheme';
 // import { setupScrollspy } from './ts/scrollspy';
 import { setupSmoothAnchors } from "./ts/smoothAnchors";
-import * as tocbot from 'tocbot';
+import tocbot from 'tocbot';
 
 let Stack = {
     init: () => {
